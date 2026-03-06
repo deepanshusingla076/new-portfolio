@@ -1,15 +1,21 @@
 ﻿"use client";
 import { motion } from "framer-motion";
 
+const courses = [
+  "Data Structures & Algorithms",
+  "Operating Systems",
+  "Database Management",
+  "Computer Networks",
+  "Object-Oriented Programming",
+  "System Design",
+];
+
+const CGPA = 9.06;
+const CIRCUMFERENCE = 2 * Math.PI * 24; // r=24
+
 export default function Education() {
-  const courses = [
-    "Data Structures & Algorithms",
-    "Operating Systems",
-    "Database Management",
-    "Computer Networks",
-    "Object-Oriented Programming",
-    "System Design",
-  ];
+  const cgpaPercent = (CGPA / 10) * 100;
+  const semesterProgress = (5 / 8) * 100;
 
   return (
     <section id="education" className="section" style={{ paddingTop: 0 }}>
@@ -21,48 +27,87 @@ export default function Education() {
         </div>
 
         <motion.div
-          className="edu-card edu-card-enhanced"
-          initial={{ opacity: 0, y: 20 }}
+          className="edu-card-v2"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
         >
-          <div className="edu-top-accent" />
-          <div className="edu-body">
-            <div className="edu-main">
-              <div className="edu-header-row">
-                <div className="edu-icon-wrap">
-                  <img src="/assets/images/chitkara-logo.png" alt="Chitkara University Logo" style={{ width: 36, height: 36, borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.12)' }} />
-                </div>
-                <div>
-                  <span className="edu-type-badge">B.E. · Undergraduate · 2023 – 2027</span>
-                  <h3 className="edu-degree">Computer Science &amp; Engineering</h3>
-                  <p className="edu-uni">Chitkara University, Punjab</p>
-                </div>
+          <div className="edu-accent-bar" />
+
+          <div className="edu-content">
+            {/* ─── Left: University Info ─── */}
+            <div className="edu-left">
+              <div className="edu-uni-logo">CU</div>
+
+              <div className="edu-uni-info">
+                <span className="edu-badge-pill">B.E. · Computer Science &amp; Engineering</span>
+                <h3 className="edu-degree-title">Chitkara University</h3>
+                <p className="edu-uni-location">Punjab, India</p>
               </div>
 
-              <div className="edu-highlights">
-                <div className="edu-highlight-item edu-cgpa-highlight">
-                  <span className="edu-hi-label">CGPA</span>
-                  <span className="edu-hi-value">9.06 <span className="edu-hi-sub">/ 10</span></span>
+              <div className="edu-timeline">
+                <div className="edu-timeline-header">
+                  <span className="edu-timeline-label">Academic Progress</span>
+                  <span className="edu-timeline-value">Sem 5 / 8</span>
                 </div>
-                <div className="edu-highlight-item">
-                  <span className="edu-hi-label">Semester</span>
-                  <span className="edu-hi-value">5th <span className="edu-hi-sub">current</span></span>
+                <div className="edu-progress-bar">
+                  <div
+                    className="edu-progress-fill"
+                    style={{ width: `${semesterProgress}%` }}
+                  />
                 </div>
-                <div className="edu-highlight-item">
-                  <span className="edu-hi-label">Status</span>
-                  <span className="edu-hi-value edu-status-active">Active</span>
+                <div className="edu-timeline-years">
+                  <span>2023</span>
+                  <span>2025 ↑ Now</span>
+                  <span>2027</span>
                 </div>
               </div>
             </div>
 
-            <div className="edu-courses">
-              <p className="edu-courses-label">Key Coursework</p>
-              <div className="edu-courses-grid">
-                {courses.map((c) => (
-                  <span key={c} className="edu-course-tag">{c}</span>
-                ))}
+            {/* ─── Right: Stats + Courses ─── */}
+            <div className="edu-right">
+              <div className="edu-stats-grid">
+                {/* CGPA ring */}
+                <div className="edu-stat-box edu-stat-main">
+                  <div className="edu-stat-ring">
+                    <svg viewBox="0 0 60 60" className="edu-ring-svg">
+                      <circle cx="30" cy="30" r="24" className="edu-ring-bg" />
+                      <circle
+                        cx="30" cy="30" r="24"
+                        className="edu-ring-fill"
+                        style={{
+                          strokeDasharray: `${(cgpaPercent / 100) * CIRCUMFERENCE} ${CIRCUMFERENCE}`,
+                        }}
+                      />
+                    </svg>
+                    <span className="edu-ring-label">{CGPA}</span>
+                  </div>
+                  <span className="edu-stat-name">CGPA / 10</span>
+                </div>
+
+                {/* Semester */}
+                <div className="edu-stat-box">
+                  <span className="edu-stat-num">
+                    5<span className="edu-stat-small">th</span>
+                  </span>
+                  <span className="edu-stat-name">Semester</span>
+                </div>
+
+                {/* Status */}
+                <div className="edu-stat-box">
+                  <span className="edu-stat-num edu-active-dot">Active</span>
+                  <span className="edu-stat-name">Status</span>
+                </div>
+              </div>
+
+              <div className="edu-courses-section">
+                <p className="edu-courses-title">Key Coursework</p>
+                <div className="edu-courses-grid">
+                  {courses.map((c) => (
+                    <span key={c} className="edu-course-chip">{c}</span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

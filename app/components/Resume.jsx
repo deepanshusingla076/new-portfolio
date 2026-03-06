@@ -19,7 +19,7 @@ export default function Resume() {
               or download the full PDF resume for detailed review.
             </p>
             <a
-              href="/resume/resume.pdf"
+              href="/resume/Resume.pdf"
               download="Deepanshu_Singla_Resume.pdf"
               className="btn-download-resume"
             >
@@ -37,7 +37,7 @@ export default function Resume() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <iframe
-            src="/resume/resume.pdf"
+            src="/resume/Resume.pdf"
             className="resume-iframe"
             title="Resume Preview"
           />

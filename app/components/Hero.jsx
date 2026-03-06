@@ -59,7 +59,7 @@ export default function Hero() {
             <div className="hero-actions">
               <a href="#projects" className="btn-primary">View Projects</a>
               <a href="#contact" className="btn-secondary">Contact Me</a>
-              <a href="/resume/resume.pdf" download className="btn-secondary" style={{ gap: 7 }}>
+              <a href="/resume/Resume.pdf" download className="btn-secondary" style={{ gap: 7 }}>
                 <IconDownload />
                 Resume
               </a>
