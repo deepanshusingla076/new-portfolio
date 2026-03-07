@@ -29,7 +29,7 @@ export default function Achievements() {
               {HACKATHONS.map((h, i) => (
                 <motion.div key={h.name} className="hack-row" variants={fadeUp}>
                   <span className="hack-row-num">0{i + 1}</span>
-                  <span className="hack-row-icon">{h.icon}</span>
+                    {/* Icon removed as requested */}
                   <div className="hack-row-info">
                     <div className="hack-row-name">{h.name}</div>
                     <div className="hack-row-type">{h.type}</div>

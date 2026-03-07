@@ -1,12 +1,13 @@
 'use client';
 import { motion } from 'framer-motion';
-import { IconLinkedIn, IconGitHub, IconFileText } from '../lib/icons';
+import { IconLinkedIn, IconGitHub, IconFileText, IconLeetCode } from '../lib/icons';
 import { stagger, fadeUp } from '../lib/animations';
 
 const connects = [
-  { icon: <IconLinkedIn />, name: 'LinkedIn', handle: 'deepanshu-singla-519057335', href: 'https://www.linkedin.com/in/deepanshu-singla-519057335/' },
+  { icon: <IconLinkedIn />, name: 'LinkedIn', handle: 'deepanshu-singla', href: 'https://www.linkedin.com/in/deepanshu-singla-519057335/' },
   { icon: <IconGitHub />, name: 'GitHub', handle: 'deepanshusingla076', href: 'https://github.com/deepanshusingla076' },
-  { icon: <IconFileText />, name: 'Resume', handle: 'deepanshu_singla_resume', href: '/resume_deepanshu_singla.pdf' },
+  { icon: <IconLeetCode />, name: 'LeetCode', handle: 'd_singla', href: 'https://leetcode.com/u/d_singla/' },
+  { icon: <IconFileText />, name: 'Resume', handle: 'View / Download', href: '/resume/Resume.pdf' },
 ];
 
 export default function About() {
@@ -28,18 +29,16 @@ export default function About() {
             viewport={{ once: true, margin: '-80px' }}
           >
             <motion.p variants={fadeUp}>
-              I&#39;m <strong>Deepanshu Singla</strong> — a Full Stack Developer from Panchkula, India
-              and a CSE undergrad at Chitkara University (2023–2027, CGPA 9.06/10).
+              I&apos;m <strong>Deepanshu Singla</strong>, a Computer Science student at Chitkara University (3rd year, CGPA 9.06/10) based in Panchkula, India. I focus on building scalable full-stack applications and backend systems designed for real-world usage — prioritizing correctness, performance, and maintainability.
             </motion.p>
             <motion.p variants={fadeUp}>
-              I work across the full stack to engineer real-time platforms, ML-powered analytics
-              tools, and production-ready web applications with clean architecture, secure APIs, and
-              solid DevOps practices.
+              My experience spans backend development, real-time systems, and data-driven applications. I work with technologies such as Node.js, Spring Boot, FastAPI, Redis, and Socket.io to build reliable APIs and real-time architectures. I also explore machine learning integration and data pipelines to add intelligent capabilities to applications.
             </motion.p>
             <motion.p variants={fadeUp}>
-              I actively contribute to open source (GSSoC), participate in hackathons, and solve
-              problems on GeeksforGeeks to stay sharp. I love turning complex problems into simple,
-              elegant solutions.
+              I enjoy thinking deeply about system design, distributed systems, and clean software architecture. My goal is to write code that is robust, maintainable, and production-ready, not just prototypes or demos.
+            </motion.p>
+            <motion.p variants={fadeUp}>
+              Beyond academics, I actively contribute to open-source programs like GSSoC, participate in hackathons, and consistently improve my problem-solving skills through GeeksforGeeks and LeetCode. I believe in understanding how systems work under the hood, rather than simply using tools at a surface level.
             </motion.p>
           </motion.div>
 

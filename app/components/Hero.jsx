@@ -1,13 +1,41 @@
 ﻿'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { IconPin, IconDownload } from '../lib/icons';
 
+const ROLES = [
+  'Full-Stack Developer',
+  'Backend Engineer',
+  'Open Source Contributor',
+  'Contributor',
+  'Problem Solver',
+];
+
+const STATS = [
+  { num: '9.06', label: 'CGPA' },
+  { num: '5+', label: 'Projects' },
+  { num: '2', label: 'Internships' },
+  { num: '5+', label: 'Hackathons' },
+];
+
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+};
+
 export default function Hero() {
   const [displayName, setDisplayName] = useState('');
+  const [roleIdx, setRoleIdx] = useState(0);
+  const [roleText, setRoleText] = useState(ROLES[0]);
   const fullName = 'DEEPANSHU SINGLA';
 
+  // Name scramble on mount
   useEffect(() => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let i = 0;
@@ -21,71 +49,156 @@ export default function Hero() {
       );
       if (i >= fullName.length) clearInterval(interval);
       i += 1 / 3;
-    }, 30);
+    }, 28);
     return () => clearInterval(interval);
   }, []);
+
+  // Premium role animation: cycle roles every 3.2s with smooth transitions
+  useEffect(() => {
+    setRoleText(ROLES[roleIdx]);
+    const timer = setTimeout(() => {
+      setRoleIdx((prev) => (prev + 1) % ROLES.length);
+    }, 3200);
+    return () => clearTimeout(timer);
+  }, [roleIdx]);
+
+  // Split role into words and animate each
+  const roleWords = roleText.split(' ');
+
+  const nameLine1 = (displayName || fullName).split(' ')[0];
+  const nameLine2 = (displayName || fullName).split(' ').slice(1).join(' ');
 
   return (
     <section id="home" className="hero">
       <div className="hero-inner">
-        <div className="hero-body">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+
+        {/* ── Left: Content ── */}
+        <motion.div
+          className="hero-body"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          {/* Meta: status + location */}
+          <motion.div className="hero-meta" variants={item}>
             <div className="hero-badge">
               <span className="hero-badge-dot" />
-              Available for opportunities
+              Available for work
             </div>
-
-            <h1 className="hero-name">{displayName}</h1>
-
-            <p className="hero-role">
-              <strong>Full Stack Developer</strong> &amp; AI Enthusiast
-            </p>
-
             <div className="hero-location">
-              <IconPin />
+              <IconPin size={11} />
               Panchkula, India
             </div>
-
-            <p className="hero-desc">
-              Computer Science Engineering student at Chitkara University (2023&ndash;2027,
-              CGPA&nbsp;9.06/10). I build real-time platforms, ML-powered analytics tools, and
-              production-ready web applications &mdash; reliable, secure, and user-centric.
-            </p>
-
-            <div className="hero-actions">
-              <a href="#projects" className="btn-primary">View Projects</a>
-              <a href="#contact" className="btn-secondary">Contact Me</a>
-              <a href="/resume/Resume.pdf" download className="btn-secondary" style={{ gap: 7 }}>
-                <IconDownload />
-                Resume
-              </a>
-            </div>
           </motion.div>
-        </div>
 
+          {/* Name — stacked, massive */}
+          <motion.div className="hero-name-wrap" variants={item}>
+            <h1 className="hero-name">
+              <span className="hero-name-line1">{nameLine1}</span>
+              <span className="hero-name-line2">
+                {nameLine2}<span className="hero-name-period">.</span>
+              </span>
+            </h1>
+          </motion.div>
+
+          {/* Premium role animation with floating words */}
+          <motion.div className="hero-role-row" variants={item}>
+            <span className="hero-role-line" />
+            <p className="hero-role">
+              <motion.span
+                className="hero-role-words"
+                variants={require('../lib/animations').staggerFast}
+                initial="hidden"
+                animate="show"
+              >
+                {roleWords.map((word, idx) => (
+                  <motion.span
+                    key={idx}
+                    className="hero-role-word"
+                    variants={require('../lib/animations').floatIn}
+                    style={{
+                      display: 'inline-block',
+                      marginRight: 6,
+                      filter: 'drop-shadow(0 2px 8px rgba(255,255,255,0.12))',
+                      transition: 'transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1)',
+                      transform: 'scale(1) translateY(0)',
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.span>
+              <span className="hero-role-cursor" />
+            </p>
+            <span className="hero-role-line" />
+          </motion.div>
+
+          {/* Description */}
+          <motion.p className="hero-desc" variants={item}>
+            Building beautiful websites, real-time platforms, scalable backends, and production-ready APIs.
+            3rd year B.E. CSE at Chitkara University, focused on clean architecture.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div className="hero-actions" variants={item}>
+            <a href="#projects" className="btn-primary">
+              View Projects
+              <span className="btn-arrow">↗</span>
+            </a>
+            <a href="#contact" className="btn-secondary">Let&apos;s Talk</a>
+            <a href="/resume/Resume.pdf" download className="btn-icon-only" title="Download Resume">
+              <IconDownload size={14} />
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* ── Right: Photo ── */}
         <motion.div
           className="hero-visual"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          initial={{ opacity: 0, x: 32 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="profile-wrap">
+
+            {/* Floating code badge */}
+            <motion.div
+              className="hero-code-badge"
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.55, delay: 0.85 }}
+            >
+              <span className="hcb-line">
+                <span className="hcb-k">const</span>{' '}
+                <span className="hcb-v">status</span>{' = '}
+                <span className="hcb-s">&ldquo;open&rdquo;</span>;
+              </span>
+              <span className="hcb-line">
+                <span className="hcb-k">const</span>{' '}
+                <span className="hcb-v">cgpa</span>{' = '}
+                <span className="hcb-n">9.06</span>;
+              </span>
+            </motion.div>
+
             <div className="profile-frame">
               <Image
                 src="/assets/images/deepanshu.jpg"
                 alt="Deepanshu Singla"
                 fill
-                sizes="(max-width: 768px) 220px, 280px"
+                sizes="(max-width: 768px) 180px, 290px"
                 style={{ objectFit: 'cover', objectPosition: 'center top' }}
                 priority
               />
             </div>
           </div>
         </motion.div>
+
+      </div>
+
+      {/* Scroll hint */}
+      <div className="hero-scroll-hint">
+        <span className="hero-scroll-line" />
+        <span className="hero-scroll-text">scroll</span>
       </div>
     </section>
   );
