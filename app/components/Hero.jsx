@@ -6,9 +6,9 @@ import { IconPin, IconDownload } from '../lib/icons';
 
 const ROLES = [
   'Full-Stack Developer',
-  'Backend Engineer',
+  'Backend Developer',
   'Open Source Contributor',
-  'Contributor',
+  'System Design Enthusiast',
   'Problem Solver',
 ];
 
@@ -101,28 +101,35 @@ export default function Hero() {
             </h1>
           </motion.div>
 
-          {/* Premium role animation with floating words */}
+          {/* Premium role animation with per-word float-in */}
           <motion.div className="hero-role-row" variants={item}>
             <span className="hero-role-line" />
             <p className="hero-role">
               <motion.span
+                key={roleIdx}
                 className="hero-role-words"
-                variants={require('../lib/animations').staggerFast}
                 initial="hidden"
                 animate="show"
+                variants={{
+                  hidden: {},
+                  show: { transition: { staggerChildren: 0.07, delayChildren: 0.02 } },
+                }}
               >
                 {roleWords.map((word, idx) => (
                   <motion.span
                     key={idx}
                     className="hero-role-word"
-                    variants={require('../lib/animations').floatIn}
-                    style={{
-                      display: 'inline-block',
-                      marginRight: 6,
-                      filter: 'drop-shadow(0 2px 8px rgba(255,255,255,0.12))',
-                      transition: 'transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1)',
-                      transform: 'scale(1) translateY(0)',
+                    variants={{
+                      hidden: { opacity: 0, y: 16, scale: 0.88, filter: 'blur(4px)' },
+                      show: {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        filter: 'blur(0px)',
+                        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+                      },
                     }}
+                    style={{ display: 'inline-block', marginRight: 6 }}
                   >
                     {word}
                   </motion.span>
@@ -133,10 +140,16 @@ export default function Hero() {
             <span className="hero-role-line" />
           </motion.div>
 
+          {/* Beautiful quote */}
+          <motion.div className="hero-quote" variants={item}>
+            <span className="hero-quote-mark">&ldquo;</span>
+            Focused on clean architecture and building real-world systems
+            <span className="hero-quote-mark">&rdquo;</span>
+          </motion.div>
+
           {/* Description */}
           <motion.p className="hero-desc" variants={item}>
-            Building beautiful websites, real-time platforms, scalable backends, and production-ready APIs.
-            3rd year B.E. CSE at Chitkara University, focused on clean architecture.
+           I enjoy building modern web applications, real-time platforms, scalable backends, and production-ready APIs. I'm a 3rd year B.E. CSE student at Chitkara University focused on clean architecture and practical system design.
           </motion.p>
 
           {/* CTAs */}
@@ -188,6 +201,7 @@ export default function Hero() {
                 sizes="(max-width: 768px) 180px, 290px"
                 style={{ objectFit: 'cover', objectPosition: 'center top' }}
                 priority
+                unoptimized
               />
             </div>
           </div>

@@ -1,14 +1,12 @@
-
-
 // Custom spring-like ease for all animations
 const spring = [0.22, 1, 0.36, 1];
 
 export const floatIn = {
-  hidden: { opacity: 0, transform: 'translate3d(0, 18px, 0) scale(0.92)' },
+  hidden: { opacity: 0, transform: "translate3d(0, 18px, 0) scale(0.92)" },
   show: {
     opacity: 1,
-    transform: 'translate3d(0, 0, 0) scale(1)',
-    transition: { duration: 0.65, ease: spring }
+    transform: "translate3d(0, 0, 0) scale(1)",
+    transition: { duration: 0.65, ease: spring },
   },
 };
 

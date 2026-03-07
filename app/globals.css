@@ -2,13 +2,31 @@
 .hero-role-word {
   display: inline-block;
   font-weight: 600;
-  transition: color 0.18s var(--t), box-shadow 0.18s var(--t), transform 0.18s var(--t);
-  will-change: transform, opacity;
+  cursor: default;
+  will-change: transform, opacity, filter;
+  transition: color 0.22s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .hero-role-word:hover {
   color: var(--accent);
-  box-shadow: 0 2px 12px rgba(255,255,255,0.12);
-  transform: scale(1.08) translate3d(0, -2px, 0);
+  transform: scale(1.1) translate3d(0, -3px, 0);
+  text-shadow: 0 4px 18px rgba(255,255,255,0.18);
+}
+/* Hero quote */
+.hero-quote {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+  font-style: italic;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.hero-quote-mark {
+  font-size: 1.1rem;
+  color: var(--text-2);
+  font-style: normal;
+  line-height: 1;
 }
 
 
