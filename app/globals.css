@@ -717,7 +717,7 @@ img { max-width: 100%; display: block; }
 .project-name { font-size: 1rem; font-weight: 700; color: var(--white); letter-spacing: -0.02em; font-family: 'Playfair Display', serif; }
 .project-subtitle { font-size: 0.8rem; font-weight: 400; color: var(--text-2); margin-top: 2px; }
 .project-year { font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; color: var(--text-3); padding: 2px 8px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
-.project-desc { font-size: 0.82rem; color: var(--text-2); line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.project-desc { font-size: 0.82rem; color: var(--text-2); line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
 .project-tag { font-size: 0.68rem; color: var(--text-2); background: var(--bg-2); border: 1px solid var(--border); padding: 3px 9px; border-radius: 999px; transition: all var(--t); }
 .project-tag:hover { color: var(--text); border-color: var(--border-h); background: var(--bg-3); }
@@ -761,7 +761,6 @@ img { max-width: 100%; display: block; }
 .ach-layout {
   display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
 }
-.ach-col {}
 .ach-col-label {
   display: flex; align-items: center; gap: 8px;
   font-family: 'JetBrains Mono', monospace; font-size: 0.71rem; font-weight: 700;
@@ -935,4 +934,337 @@ html {
 
 /* Section entrance animation enhancement */
 .section { padding: 80px 0; }
+
+/* ════ RESUME — fixed viewer ════ */
+.resume-btns {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.btn-view-resume {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em;
+  color: var(--text); background: transparent; padding: 12px 22px;
+  border: 1px solid var(--border); border-radius: var(--r-sm);
+  transition: all var(--t); width: fit-content;
+}
+.btn-view-resume:hover { border-color: var(--border-h); background: var(--bg-1); transform: translateY(-2px); }
+
+.resume-fallback-ui {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; padding: 24px; text-align: center;
+}
+.resume-fallback-icon { font-size: 3rem; }
+.resume-fallback-text { font-size: 0.9rem; color: var(--text-2); }
+.resume-fallback-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+
+/* ════ CONTACT — error link ════ */
+.form-error-link {
+  color: #f87171; text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity var(--t);
+}
+.form-error-link:hover { opacity: 0.75; }
+
+/* ════ PROJECTS — Lanyard Carousel ════ */
+.projects-section { overflow: visible; }
+
+.projects-carousel-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.projects-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.proj-nav-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  background: var(--bg-1);
+  padding: 8px 20px;
+  border-radius: 8px;
+  transition: all var(--t);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+.proj-nav-btn:hover {
+  border-color: var(--border-h);
+  color: var(--text);
+  background: var(--bg-2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+}
+.proj-nav-btn:active { transform: translateY(0); box-shadow: none; }
+
+.proj-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  letter-spacing: 0.1em;
+  min-width: 60px;
+  text-align: center;
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+/* Carousel outer: grid of two equal cols */
+.projects-carousel-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+/* ── Lanyard column ── */
+.projects-lanyard-col {
+  overflow: hidden;
+  position: relative;
+}
+
+.lanyard-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.lanyard-clip {
+  width: 56px;
+  height: 18px;
+  border: 2.5px solid;
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  background: var(--bg-2);
+  flex-shrink: 0;
+}
+
+.lanyard-swing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  width: 100%;
+}
+
+.lanyard-strap {
+  width: 22px;
+  height: 72px;
+  clip-path: polygon(4px 0, calc(100% - 4px) 0, 100% 100%, 0 100%);
+  border-radius: 0 0 3px 3px;
+  flex-shrink: 0;
+}
+
+/* Card fills the column */
+.lanyard-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.lanyard-card-bar { height: 5px; }
+
+/* Image area — tall so it matches info card height */
+.lanyard-img-area {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-2);
+}
+
+.lanyard-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.lanyard-card:hover .lanyard-img { transform: scale(1.05); }
+
+.lanyard-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.lanyard-placeholder-text {
+  font-size: 52px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.04em;
+}
+.lanyard-placeholder-sub {
+  font-size: 10px;
+  color: var(--text-3);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em;
+}
+
+.lanyard-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.28) 100%);
+  pointer-events: none;
+}
+
+.lanyard-card-footer {
+  padding: 13px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  background: var(--bg-1);
+  gap: 8px;
+}
+.lanyard-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lanyard-card-year {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  flex-shrink: 0;
+  letter-spacing: 0.06em;
+}
+
+/* ── Project info column ── */
+.projects-info-col {
+  overflow: hidden;
+  position: relative;
+}
+
+.project-info-card {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pic-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.pic-num-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--text-3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pic-title {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  font-family: 'Playfair Display', Georgia, serif;
+  margin: 0;
+}
+
+.pic-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-2);
+  font-weight: 400;
+  margin: 0;
+}
+
+.pic-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0;
+}
+
+.pic-desc {
+  font-size: 0.86rem;
+  color: var(--text-2);
+  line-height: 1.75;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Dot pagination */
+.proj-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+.proj-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-h);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+.proj-dot.active {
+  width: 22px;
+  border-radius: 3px;
+  background: var(--white);
+}
+.proj-dot:hover:not(.active) { background: var(--text-3); transform: scale(1.3); }
+
+/* Responsive */
+@media (max-width: 860px) {
+  .projects-carousel-body {
+    grid-template-columns: 1fr;
+  }
+  .lanyard-img-area { height: 220px; }
+  .projects-carousel-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+@media (max-width: 480px) {
+  .lanyard-img-area { height: 180px; }
+  .project-info-card { padding: 18px; }
+  .pic-title { font-size: 1.25rem; }
+}
+
+/* ════ GALAXY BACKGROUND ════ */
+/* canvas is inline-styled as fixed/z-0, but ensure sections float above */
+section, nav, footer, main { position: relative; z-index: 1; }
+
+
+/* Galaxy canvas sits at z-index:1, so content must be z-index>=2 */
+section, nav, footer, main { z-index: 2; }
 

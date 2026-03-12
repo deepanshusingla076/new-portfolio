@@ -100,7 +100,12 @@ export default function Contact() {
               <div className="form-msg success">✓ Message sent! I&apos;ll get back to you soon.</div>
             )}
             {state === 'error' && (
-              <div className="form-msg error">Something went wrong. Please try again or email me directly.</div>
+              <div className="form-msg error">
+                Something went wrong.{' '}
+                <a href="mailto:deepanshusingla076@gmail.com" className="form-error-link">
+                  Email me directly
+                </a>{' '}or try again.
+              </div>
             )}
 
             <button type="submit" className="form-submit" disabled={state === 'sending'}>

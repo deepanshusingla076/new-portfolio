@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { motion } from 'framer-motion';
 import { IconDownload } from '../lib/icons';
 
@@ -8,7 +8,7 @@ export default function Resume() {
       <div className="container">
         <div className="resume-header-row">
           <div className="resume-header-left">
-            <span className="section-num">07 â€” RESUME</span>
+            <span className="section-num">07 — RESUME</span>
             <h2 className="resume-big-title">
               Professional<br />Resume
             </h2>
@@ -18,14 +18,24 @@ export default function Resume() {
               View a high-level snapshot of my experience, education, and technical skills,
               or download the full PDF resume for detailed review.
             </p>
-            <a
-              href="/resume/Resume.pdf"
-              download="Deepanshu_Singla_Resume.pdf"
-              className="btn-download-resume"
-            >
-              <IconDownload size={16} />
-              DOWNLOAD RESUME
-            </a>
+            <div className="resume-btns">
+              <a
+                href="/resume/Resume.pdf"
+                download="Deepanshu_Singla_Resume.pdf"
+                className="btn-download-resume"
+              >
+                <IconDownload size={16} />
+                DOWNLOAD
+              </a>
+              <a
+                href="/resume/Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-view-resume"
+              >
+                ↗ OPEN IN BROWSER
+              </a>
+            </div>
           </div>
         </div>
 
@@ -36,16 +46,35 @@ export default function Resume() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <iframe
-            src="/resume/Resume.pdf"
+          <object
+            data="/resume/Resume.pdf"
+            type="application/pdf"
             className="resume-iframe"
-            title="Resume Preview"
-          />
-          {typeof window !== 'undefined' && !window.navigator?.pdfViewerEnabled && (
-            <p className="resume-fallback">
-              PDF preview is not available in this browser. Please use the download button above to view the resume.
-            </p>
-          )}
+          >
+            <div className="resume-fallback-ui">
+              <div className="resume-fallback-icon">📄</div>
+              <p className="resume-fallback-text">
+                Your browser doesn&apos;t support inline PDF preview.
+              </p>
+              <div className="resume-fallback-btns">
+                <a
+                  href="/resume/Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-download-resume"
+                >
+                  Open PDF in New Tab
+                </a>
+                <a
+                  href="/resume/Resume.pdf"
+                  download="Deepanshu_Singla_Resume.pdf"
+                  className="btn-view-resume"
+                >
+                  <IconDownload size={14} /> Download
+                </a>
+              </div>
+            </div>
+          </object>
         </motion.div>
       </div>
     </section>
