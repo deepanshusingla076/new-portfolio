@@ -51,25 +51,26 @@ export default function Achievements() {
             <motion.div className="ach-col-label" variants={labelReveal}>
               <span>🏆</span> Hackathons &amp; Competitions
             </motion.div>
-            <motion.div
-              className="hack-list"
-              variants={rowStagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: '-40px' }}
-            >
-              {HACKATHONS.map((h, i) => (
-                <motion.div key={h.name} className="hack-row" variants={rowItem}
-                  whileHover={{ x: 6, transition: { duration: 0.18 } }}
+                <motion.div
+                  className="hack-list"
+                  variants={rowStagger}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: '-40px' }}
                 >
-                  <span className="hack-row-num">0{i + 1}</span>
-                  <div className="hack-row-info">
-                    <div className="hack-row-name">{h.name}</div>
-                    <div className="hack-row-type">{h.type}</div>
-                  </div>
+                  {HACKATHONS.map((h) => (
+                    <motion.div
+                      className="hack-row"
+                      variants={rowItem}
+                      whileHover={{ x: 6, scale: 1.04, boxShadow: '0 6px 24px rgba(34,197,94,0.18)' }}
+                      transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                      key={h.name}
+                    >
+                      <span className="hack-name">{h.name}</span>
+                      <span className="hack-year">{h.year}</span>
+                    </motion.div>
+                  ))}
                 </motion.div>
-              ))}
-            </motion.div>
           </motion.div>
 
           {/* Right: Certifications */}
@@ -83,26 +84,26 @@ export default function Achievements() {
             <motion.div className="ach-col-label" variants={labelReveal}>
               <span>📜</span> Certifications
             </motion.div>
-            <motion.div
-              className="cert-list"
-              variants={rowStagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: '-40px' }}
-            >
-              {CERTS.map((cert) => (
-                <motion.div key={cert.name} className="cert-row" variants={rowItem}
-                  whileHover={{ x: 6, transition: { duration: 0.18 } }}
+                <motion.div
+                  className="cert-list"
+                  variants={rowStagger}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: '-40px' }}
                 >
-                  <div className="cert-row-icon">{cert.icon}</div>
-                  <div className="cert-row-info">
-                    <div className="cert-row-name">{cert.name}</div>
-                    <div className="cert-row-issuer">{cert.issuer}</div>
-                  </div>
-                  <div className="cert-row-badge">✓</div>
+                  {CERTS.map((c) => (
+                    <motion.div
+                      className="cert-row"
+                      variants={rowItem}
+                      whileHover={{ x: 6, scale: 1.04, boxShadow: '0 6px 24px rgba(59,130,246,0.18)' }}
+                      transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                      key={c.name}
+                    >
+                      <span className="cert-name">{c.name}</span>
+                      <span className="cert-year">{c.year}</span>
+                    </motion.div>
+                  ))}
                 </motion.div>
-              ))}
-            </motion.div>
           </motion.div>
         </div>
       </div>

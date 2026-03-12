@@ -29,17 +29,15 @@ export default function Lanyard({ project }) {
 
       {/* Swing animation — always plays on mount (component is remounted each project change) */}
       <motion.div
-        initial={{ rotate: -18, opacity: 0.75, y: -8 }}
-        animate={{ rotate: 0, opacity: 1, y: 0 }}
+        initial={{ rotate: -18, opacity: 0.75, y: -8, scale: 0.98 }}
+        animate={{ rotate: 0, opacity: 1, y: 0, scale: 1 }}
         transition={{
           rotate: {
-            type: 'spring',
-            stiffness: 60,
-            damping: 10,
-            mass: 1.2,
+            type: 'spring', stiffness: 60, damping: 10, mass: 1.2
           },
           opacity: { duration: 0.25 },
           y: { duration: 0.35, ease: 'easeOut' },
+          scale: { type: 'spring', stiffness: 320, damping: 22 }
         }}
         className="lanyard-swing"
       >
@@ -53,7 +51,7 @@ export default function Lanyard({ project }) {
 
         {/* Badge card */}
         <motion.div
-          whileHover={{ scale: 1.02, y: -4 }}
+          whileHover={{ scale: 1.04, y: -6, boxShadow: `0 24px 64px ${accent}22, 0 0 0 1px var(--border)` }}
           transition={{ type: 'spring', stiffness: 320, damping: 22 }}
           className="lanyard-card"
           style={{ boxShadow: `0 20px 60px rgba(0,0,0,0.55), 0 0 0 1px var(--border), 0 0 40px ${accent}18` }}

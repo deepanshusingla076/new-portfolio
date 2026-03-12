@@ -1,6 +1,7 @@
 ﻿'use client';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useGesture } from '@use-gesture/react';
 import Lanyard from './Lanyard';
 import { PROJECTS } from '../lib/data';
 import { IconGlobe, IconGitHub } from '../lib/icons';
@@ -27,7 +28,9 @@ export default function Projects() {
   const [idx, setIdx] = useState(0);
   const [direction, setDirection] = useState(1);
   const project = PROJECTS[idx];
+  const carouselRef = useRef(null);
 
+  // Navigation logic
   const go = useCallback((dir) => {
     setDirection(dir);
     setIdx((prev) => {
@@ -45,6 +48,34 @@ export default function Projects() {
     },
     [idx]
   );
+
+  // Gesture controls
+  useGesture(
+    {
+      onDrag: ({ down, movement: [mx], velocity, direction: [dx] }) => {
+        if (!down && Math.abs(mx) > 60) {
+          if (mx < 0) go(1); // drag/swipe left → next
+          else go(-1); // drag/swipe right → prev
+        }
+      },
+      onSwipe: ({ direction: [dx] }) => {
+        if (dx === -1) go(1); // swipe left → next
+        if (dx === 1) go(-1); // swipe right → prev
+      },
+    },
+    {
+      target: carouselRef,
+      eventOptions: { passive: false },
+      drag: { axis: 'x', filterTaps: true },
+      swipe: { axis: 'x' },
+    }
+  );
+
+  // Keyboard navigation
+  const handleKey = (e) => {
+    if (e.key === 'ArrowLeft') go(-1);
+    if (e.key === 'ArrowRight') go(1);
+  };
 
   return (
     <section id="projects" className="section projects-section">
@@ -70,7 +101,13 @@ export default function Projects() {
         </div>
 
         {/* Carousel — both columns share the same AnimatePresence key so they slide together */}
-        <div className="projects-carousel-body">
+        <div
+          className="projects-carousel-body"
+          ref={carouselRef}
+          tabIndex={0}
+          onKeyDown={handleKey}
+          style={{ outline: 'none' }}
+        >
           {/* LEFT: Lanyard card */}
           <div className="projects-lanyard-col">
             <AnimatePresence custom={direction} mode="popLayout" initial={false}>
