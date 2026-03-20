@@ -1,26 +1,66 @@
 ﻿'use client';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { CERTS, HACKATHONS } from '../lib/data';
-import { stagger, fadeUp, slideLeft, slideRight } from '../lib/animations';
+import { fadeUp } from '../lib/animations';
 
-const colFadeUp = {
-  hidden: { opacity: 0, y: 32 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const labelReveal = {
-  hidden: { opacity: 0, x: -16 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const rowItem = {
-  hidden: { opacity: 0, x: -20 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const rowStagger = {
+const cardStagger = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
+  show: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+  },
+};
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+function CredentialCard({ item, kind }) {
+  return (
+    <motion.article
+      className="cred-card"
+      variants={cardVariant}
+      whileHover={{ y: -4, scale: 1.01 }}
+      transition={{ type: 'spring', stiffness: 280, damping: 20 }}
+    >
+      <div className="cred-card-title-wrap">
+        <h4 className="cred-card-title">{item.name}</h4>
+      </div>
+
+      {item.image ? (
+        <div className="cred-thumb-wrap">
+          <Image
+            src={item.image}
+            alt={`${item.name} ${kind}`}
+            className="cred-thumb"
+            width={900}
+            height={600}
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <div className="cred-thumb-wrap cred-thumb-placeholder-wrap">
+          <div className="cred-thumb-placeholder">No Preview</div>
+        </div>
+      )}
+
+      <div className="cred-card-meta">
+        <span className="cred-org">{item.issuer || item.type}</span>
+        <span className="cred-year">{item.year}</span>
+      </div>
+      {item.note && <p className="cred-note">{item.note}</p>}
+    </motion.article>
+  );
+}
+
+const columnVariant = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
 export default function Achievements() {
@@ -35,77 +75,68 @@ export default function Achievements() {
           viewport={{ once: true, margin: '-60px' }}
         >
           <span className="section-num">06</span>
-          <h2 className="section-title">Achievements &amp; Certificates</h2>
+          <h2 className="section-title">Hackathons</h2>
           <div className="section-line" />
         </motion.div>
 
-        <div className="ach-layout">
-          {/* Left: Hackathons */}
+        <motion.div
+          className="ach-section-block"
+          variants={columnVariant}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-60px' }}
+        >
+          <div className="ach-col-label">
+            <span>🏆</span> Hackathons &amp; Competitions
+          </div>
           <motion.div
-            className="ach-col"
-            variants={colFadeUp}
+            className="cred-grid"
+            variants={cardStagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true, margin: '-40px' }}
           >
-            <motion.div className="ach-col-label" variants={labelReveal}>
-              <span>🏆</span> Hackathons &amp; Competitions
-            </motion.div>
-                <motion.div
-                  className="hack-list"
-                  variants={rowStagger}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, margin: '-40px' }}
-                >
-                  {HACKATHONS.map((h) => (
-                    <motion.div
-                      className="hack-row"
-                      variants={rowItem}
-                      whileHover={{ x: 6, scale: 1.04, boxShadow: '0 6px 24px rgba(34,197,94,0.18)' }}
-                      transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-                      key={h.name}
-                    >
-                      <span className="hack-name">{h.name}</span>
-                      <span className="hack-year">{h.year}</span>
-                    </motion.div>
-                  ))}
-                </motion.div>
+            {HACKATHONS.map((h) => (
+              <CredentialCard key={h.name} item={h} kind="hackathon certificate" />
+            ))}
           </motion.div>
+        </motion.div>
 
-          {/* Right: Certifications */}
+        <motion.div
+          className="section-header ach-sub-header"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-60px' }}
+        >
+          <span className="section-num">07</span>
+          <h2 className="section-title">Certifications</h2>
+          <div className="section-line" />
+        </motion.div>
+
+        <motion.div
+          id="certifications"
+          className="ach-section-block"
+          variants={columnVariant}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-60px' }}
+        >
+          <div className="ach-col-label">
+            <span>📜</span> Professional &amp; Technical Certificates
+          </div>
           <motion.div
-            className="ach-col"
-            variants={colFadeUp}
+            className="cred-grid"
+            variants={cardStagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true, margin: '-40px' }}
           >
-            <motion.div className="ach-col-label" variants={labelReveal}>
-              <span>📜</span> Certifications
-            </motion.div>
-                <motion.div
-                  className="cert-list"
-                  variants={rowStagger}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, margin: '-40px' }}
-                >
-                  {CERTS.map((c) => (
-                    <motion.div
-                      className="cert-row"
-                      variants={rowItem}
-                      whileHover={{ x: 6, scale: 1.04, boxShadow: '0 6px 24px rgba(59,130,246,0.18)' }}
-                      transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-                      key={c.name}
-                    >
-                      <span className="cert-name">{c.name}</span>
-                      <span className="cert-year">{c.year}</span>
-                    </motion.div>
-                  ))}
-                </motion.div>
+            {CERTS.map((c) => (
+              <CredentialCard key={c.name} item={c} kind="certificate" />
+            ))}
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
