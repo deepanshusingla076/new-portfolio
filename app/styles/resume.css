@@ -1,0 +1,147 @@
+.resume-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.resume-header-left {
+  flex-shrink: 0;
+}
+
+.resume-header-left .section-num {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.resume-big-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--white);
+}
+
+.resume-header-right {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 18px;
+  padding-top: 8px;
+}
+
+.resume-desc {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.8;
+}
+
+.resume-btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-download-resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--white);
+  padding: 12px 22px;
+  border-radius: var(--r-sm);
+  transition: all var(--t);
+  width: fit-content;
+}
+
+.btn-download-resume:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.btn-view-resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  background: transparent;
+  padding: 12px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  transition: all var(--t);
+  width: fit-content;
+}
+
+.btn-view-resume:hover {
+  border-color: var(--border-h);
+  background: var(--bg-1);
+  transform: translateY(-2px);
+}
+
+.resume-preview-wrap {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  height: 75vh;
+  min-height: 400px;
+  position: relative;
+}
+
+.resume-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.resume-fallback {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.88rem;
+  color: var(--text-3);
+  text-align: center;
+  padding: 0 24px;
+}
+
+.resume-fallback-ui {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+}
+
+.resume-fallback-icon {
+  font-size: 3rem;
+}
+
+.resume-fallback-text {
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+.resume-fallback-btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}

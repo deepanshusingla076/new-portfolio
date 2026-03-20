@@ -1,46 +1,81 @@
-A modern, responsive portfolio website built using **Next.js, Vite, and Three.js**, featuring interactive 3D animations and a clean, professional design.
+# 🚀 Deepanshu Singla — Portfolio
+
+A modern and visually engaging personal portfolio showcasing my work, skills, and experience as a developer. Built with performance, design, and user experience in mind.
 
 ---
 
-## ✨ Features
+## 🌐 Live Website
 
-- 🎯 **Interactive 3D Lanyard Animation** — Physics-based hero section
-- 📱 **Fully Responsive Design** — Works seamlessly across all devices
-- ⚡ **Smooth Animations** — Powered by Framer Motion
-- 📧 **Contact Form** — Email integration with fallback support
-- 🚀 **Performance Optimized** — Fast loading and smooth scrolling
-- 🎨 **Modern UI/UX** — Clean and professional interface
+🔗 https://deepanshusingla.vercel.app
 
 ---
 
-## 📋 Sections
+## ✨ Overview
 
-1. **Hero** — Introduction with animated 3D lanyard card  
-2. **About** — Background and expertise  
-3. **Skills** — Technical skills and proficiencies  
-4. **Projects** — Showcase of work and achievements  
-5. **Stats** — Key metrics and accomplishments  
-6. **Contact** — Contact form with email integration  
+This portfolio highlights my journey, projects, and technical expertise through a clean interface and smooth user interactions. It is designed to provide a seamless experience across all devices while maintaining a professional and aesthetic look.
+
+---
+
+## ⚡ Features
+
+- 🎨 Clean and modern UI design
+- 📱 Fully responsive across all devices
+- ⚡ Smooth animations and transitions
+- 🧩 Interactive project showcase
+- 📄 Resume preview & download
+- 📧 Functional contact form with email integration
+- 🌙 Dark & Light mode support
+
+---
+
+## 🧭 Sections
+
+- **Hero** — Introduction and first impression
+- **About** — Background and profile
+- **Education** — Academic journey
+- **Experience** — Work and internships
+- **Projects** — Featured work
+- **Tech Stack** — Skills and tools
+- **Achievements** — Highlights and milestones
+- **Resume** — Downloadable CV
+- **Contact** — Direct communication
 
 ---
 
 ## 🛠️ Tech Stack
 
-- Next.js
-- Vite  
-- Three.js  
-- @react-three/fiber  
-- @react-three/drei  
-- Framer Motion  
-- EmailJS  
-- React Hot Toast  
+- **Next.js (App Router)**
+- **React 18**
+- **Framer Motion**
+- **@use-gesture/react**
+- **NodeMailer**
+- **React Icons**
+- **CSS Modules**
 
 ---
 
-## 📦 Installation & Setup
+## 📁 Project Structure
 
 ```bash
-git clone https://github.com/deepanshusingla076/new-portfolio.git
-cd new-portfolio
-npm install
-npm run dev
+app/
+ ├── api/contact/route.js
+ ├── components/
+ ├── context/
+ ├── lib/
+ ├── styles/
+ ├── layout.jsx
+ └── page.jsx
+
+public/
+ ├── assets/
+ └── resume/
+
+ ---
+
+## 📧 Contact
+
+Feel free to reach out for collaborations, opportunities, or just a quick chat:
+
+- 📩 Email: deepanshusingla0076@gmail.com
+- 🌐 Portfolio: https://deepanshusingla.vercel.app
+```

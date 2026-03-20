@@ -75,7 +75,7 @@ export default function Navigation() {
             )}
             <ThemeToggle />
             <a
-              href="/resume/resume.pdf"
+              href="/resume/Deepanshu_Singla_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-resume-nav"
@@ -108,7 +108,7 @@ export default function Navigation() {
             </a>
           ))}
           <a
-            href="/resume/resume.pdf"
+            href="/resume/Deepanshu_Singla_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             download

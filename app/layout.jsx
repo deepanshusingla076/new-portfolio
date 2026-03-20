@@ -1,4 +1,4 @@
-import './globals.css';
+import './styles/index.css';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from './context/ThemeContext';
 

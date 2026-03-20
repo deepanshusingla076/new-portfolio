@@ -7,7 +7,7 @@ const connects = [
   { icon: <IconLinkedIn />, name: 'LinkedIn', handle: 'deepanshu-singla', href: 'https://www.linkedin.com/in/deepanshu-singla-519057335/' },
   { icon: <IconGitHub />, name: 'GitHub', handle: 'deepanshusingla076', href: 'https://github.com/deepanshusingla076' },
   { icon: <IconLeetCode />, name: 'LeetCode', handle: 'd_singla', href: 'https://leetcode.com/u/d_singla/' },
-  { icon: <IconFileText />, name: 'Resume', handle: 'View / Download', href: '/resume/Resume.pdf' },
+  { icon: <IconFileText />, name: 'Resume', handle: 'View / Download', href: '/resume/Deepanshu_Singla_Resume.pdf' },
 ];
 
 export default function About() {

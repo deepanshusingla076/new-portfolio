@@ -10,17 +10,13 @@ export default function Resume() {
           <div className="resume-header-left">
             <span className="section-num">07 — RESUME</span>
             <h2 className="resume-big-title">
-              Professional<br />Resume
+              Resume
             </h2>
           </div>
           <div className="resume-header-right">
-            <p className="resume-desc">
-              View a high-level snapshot of my experience, education, and technical skills,
-              or download the full PDF resume for detailed review.
-            </p>
             <div className="resume-btns">
               <a
-                href="/resume/Resume.pdf"
+                href="/resume/Deepanshu_Singla_Resume.pdf"
                 download="Deepanshu_Singla_Resume.pdf"
                 className="btn-download-resume"
               >
@@ -28,7 +24,7 @@ export default function Resume() {
                 DOWNLOAD
               </a>
               <a
-                href="/resume/Resume.pdf"
+                href="/resume/Deepanshu_Singla_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-view-resume"
@@ -47,7 +43,7 @@ export default function Resume() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <object
-            data="/resume/Resume.pdf"
+            data="/resume/Deepanshu_Singla_Resume.pdf"
             type="application/pdf"
             className="resume-iframe"
           >
@@ -58,7 +54,7 @@ export default function Resume() {
               </p>
               <div className="resume-fallback-btns">
                 <a
-                  href="/resume/Resume.pdf"
+                  href="/resume/Deepanshu_Singla_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-download-resume"
@@ -66,7 +62,7 @@ export default function Resume() {
                   Open PDF in New Tab
                 </a>
                 <a
-                  href="/resume/Resume.pdf"
+                  href="/resume/Deepanshu_Singla_Resume.pdf"
                   download="Deepanshu_Singla_Resume.pdf"
                   className="btn-view-resume"
                 >

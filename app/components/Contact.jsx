@@ -6,6 +6,7 @@ import { IconMail, IconPhone, IconPin, IconGitHub, IconLinkedIn } from '../lib/i
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [state, setState] = useState(null);
+  const [errorText, setErrorText] = useState('');
 
   const onChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -13,6 +14,7 @@ export default function Contact() {
   const onSubmit = async (e) => {
     e.preventDefault();
     setState('sending');
+    setErrorText('');
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -23,7 +25,8 @@ export default function Contact() {
       if (!res.ok || !data.ok) throw new Error(data.error || 'Failed');
       setState('success');
       setForm({ name: '', email: '', message: '' });
-    } catch {
+    } catch (error) {
+      setErrorText(error.message || 'Something went wrong.');
       setState('error');
     }
   };
@@ -101,7 +104,7 @@ export default function Contact() {
             )}
             {state === 'error' && (
               <div className="form-msg error">
-                Something went wrong.{' '}
+                {errorText || 'Something went wrong.'}{' '}
                 <a href="mailto:deepanshusingla076@gmail.com" className="form-error-link">
                   Email me directly
                 </a>{' '}or try again.

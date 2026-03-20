@@ -1,0 +1,190 @@
+@media (max-width: 1024px) {
+  .hero-inner {
+    grid-template-columns: 1fr 260px;
+    gap: 48px;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .profile-wrap {
+    width: 200px;
+    height: 240px;
+    margin: 0 auto;
+  }
+
+  .hero-code-badge {
+    display: none;
+  }
+
+  .hero-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-meta,
+  .hero-role-row,
+  .hero-location,
+  .hero-actions,
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-role-line {
+    display: none;
+  }
+
+  .about-grid,
+  .contact-grid,
+  .ach-layout,
+  .edu-content,
+  .projects-carousel-body {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-carousel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .lanyard-img-area {
+    height: 220px;
+  }
+
+  .contact-grid {
+    gap: 32px;
+  }
+
+  .resume-header-row {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .resume-header-right {
+    max-width: 100%;
+  }
+
+  .section-title {
+    white-space: normal;
+  }
+
+  .edu-left {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links,
+  .btn-resume-nav,
+  .nav-greeting {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+
+  .hero-inner {
+    padding: 24px 24px 40px;
+  }
+
+  .hero {
+    min-height: calc(100svh - var(--nav-h));
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .resume-preview-wrap {
+    height: 50vh;
+    min-height: 300px;
+  }
+
+  .edu-left,
+  .edu-right {
+    padding: 24px;
+  }
+
+  .edu-stats-grid {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .section-header {
+    gap: 12px;
+  }
+
+  .contact-form {
+    padding: 20px 16px;
+  }
+
+  .resume-preview-wrap {
+    height: 40vh;
+  }
+
+  .resume-big-title {
+    font-size: 1.9rem;
+  }
+
+  .hero-name {
+    font-size: 2.4rem;
+  }
+
+  .profile-wrap {
+    width: 170px;
+    height: 200px;
+  }
+
+  .ach-layout {
+    gap: 24px;
+  }
+
+  .projects-grid {
+    gap: 14px;
+  }
+
+  .lanyard-img-area {
+    height: 180px;
+  }
+
+  .project-info-card {
+    padding: 18px;
+  }
+
+  .pic-title {
+    font-size: 1.25rem;
+  }
+}

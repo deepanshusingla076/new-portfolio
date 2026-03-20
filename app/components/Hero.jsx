@@ -129,7 +129,6 @@ export default function Hero() {
                         transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
                       },
                     }}
-                    style={{ display: 'inline-block', marginRight: 6 }}
                   >
                     {word}
                   </motion.span>
@@ -149,7 +148,7 @@ export default function Hero() {
 
           {/* Description */}
           <motion.p className="hero-desc" variants={item}>
-           I enjoy building modern web applications, real-time platforms, scalable backends, and production-ready APIs. I'm a 3rd year B.E. CSE student at Chitkara University focused on clean architecture and practical system design.
+           I enjoy building modern web applications, real-time platforms, scalable backends, and production-ready APIs. I am a 3rd year B.E. CSE student at Chitkara University focused on clean architecture and practical system design.
           </motion.p>
 
           {/* CTAs */}
@@ -158,8 +157,8 @@ export default function Hero() {
               View Projects
               <span className="btn-arrow">↗</span>
             </a>
-            <a href="#contact" className="btn-secondary">Let&apos;s Talk</a>
-            <a href="/resume/Resume.pdf" download className="btn-icon-only" title="Download Resume">
+            <a href="#contact" className="btn-secondary">Get In Touch</a>
+            <a href="/resume/Deepanshu_Singla_Resume.pdf" download className="btn-icon-only" title="Download Resume">
               <IconDownload size={14} />
             </a>
           </motion.div>

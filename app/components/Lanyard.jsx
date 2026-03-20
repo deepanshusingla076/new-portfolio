@@ -1,6 +1,7 @@
 ﻿'use client';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 function accentFromName(name = '') {
   let h = 0;
@@ -62,11 +63,13 @@ export default function Lanyard({ project }) {
           {/* Screenshot area */}
           <div className="lanyard-img-area">
             {!imgError && project.image ? (
-              <img
+              <Image
                 src={project.image}
                 alt={project.name}
                 className="lanyard-img"
                 onError={() => setImgError(true)}
+                fill
+                sizes="(max-width: 860px) 100vw, 460px"
                 loading="eager"
               />
             ) : (

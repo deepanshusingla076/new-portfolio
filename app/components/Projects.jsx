@@ -58,16 +58,11 @@ export default function Projects() {
           else go(-1); // drag/swipe right → prev
         }
       },
-      onSwipe: ({ direction: [dx] }) => {
-        if (dx === -1) go(1); // swipe left → next
-        if (dx === 1) go(-1); // swipe right → prev
-      },
     },
     {
       target: carouselRef,
       eventOptions: { passive: false },
       drag: { axis: 'x', filterTaps: true },
-      swipe: { axis: 'x' },
     }
   );
 
