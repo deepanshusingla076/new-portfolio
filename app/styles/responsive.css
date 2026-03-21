@@ -47,6 +47,23 @@
     display: none;
   }
 
+  .hero-role-row {
+    justify-content: flex-start;
+  }
+
+  .hero-role {
+    justify-content: flex-start;
+    text-align: left;
+    white-space: normal;
+    flex-wrap: wrap;
+  }
+
+  .hero-role-words {
+    justify-content: flex-start;
+    white-space: normal;
+    display: inline;
+  }
+
   .about-grid,
   .contact-grid,
   .ach-layout,

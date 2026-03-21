@@ -16,7 +16,7 @@ export default function Experience() {
           {EXPERIENCE.map((exp, i) => (
             <motion.div
               key={exp.role}
-              className="exp-item"
+              className={`exp-item ${exp.role === 'Open Source Contributor' ? 'exp-item-open-source' : ''}`}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-60px' }}

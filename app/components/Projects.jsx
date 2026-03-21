@@ -29,6 +29,7 @@ export default function Projects() {
   const [direction, setDirection] = useState(1);
   const project = PROJECTS[idx];
   const carouselRef = useRef(null);
+  const touchStartRef = useRef({ x: 0, y: 0 });
 
   // Navigation logic
   const go = useCallback((dir) => {
@@ -72,6 +73,26 @@ export default function Projects() {
     if (e.key === 'ArrowRight') go(1);
   };
 
+  // Mobile fallback: detect horizontal swipe directly from touch events.
+  const handleTouchStart = (e) => {
+    const touch = e.changedTouches?.[0];
+    if (!touch) return;
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = (e) => {
+    const touch = e.changedTouches?.[0];
+    if (!touch) return;
+
+    const dx = touch.clientX - touchStartRef.current.x;
+    const dy = touch.clientY - touchStartRef.current.y;
+
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) go(1);
+      else go(-1);
+    }
+  };
+
   return (
     <section id="projects" className="section projects-section">
       <div className="container">
@@ -101,6 +122,8 @@ export default function Projects() {
           ref={carouselRef}
           tabIndex={0}
           onKeyDown={handleKey}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           style={{ outline: 'none' }}
         >
           {/* LEFT: Lanyard card */}

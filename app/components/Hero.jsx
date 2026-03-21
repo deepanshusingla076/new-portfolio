@@ -62,9 +62,6 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, [roleIdx]);
 
-  // Split role into words and animate each
-  const roleWords = roleText.split(' ');
-
   const nameLine1 = (displayName || fullName).split(' ')[0];
   const nameLine2 = (displayName || fullName).split(' ').slice(1).join(' ');
 
@@ -111,28 +108,16 @@ export default function Hero() {
                 initial="hidden"
                 animate="show"
                 variants={{
-                  hidden: {},
-                  show: { transition: { staggerChildren: 0.07, delayChildren: 0.02 } },
+                  hidden: { opacity: 0, y: 10, filter: 'blur(3px)' },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    filter: 'blur(0px)',
+                    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+                  },
                 }}
               >
-                {roleWords.map((word, idx) => (
-                  <motion.span
-                    key={idx}
-                    className="hero-role-word"
-                    variants={{
-                      hidden: { opacity: 0, y: 16, scale: 0.88, filter: 'blur(4px)' },
-                      show: {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        filter: 'blur(0px)',
-                        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-                      },
-                    }}
-                  >
-                    {word}
-                  </motion.span>
-                ))}
+                {roleText}
               </motion.span>
               <span className="hero-role-cursor" />
             </p>

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { CERTS, HACKATHONS } from '../lib/data';
 import { fadeUp } from '../lib/animations';
+import BorderGlow from './BorderGlow';
 
 const cardStagger = {
   hidden: {},
@@ -23,37 +24,53 @@ const cardVariant = {
 function CredentialCard({ item, kind }) {
   return (
     <motion.article
-      className="cred-card"
+      className="cred-card-shell"
       variants={cardVariant}
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ type: 'spring', stiffness: 280, damping: 20 }}
     >
-      <div className="cred-card-title-wrap">
-        <h4 className="cred-card-title">{item.name}</h4>
-      </div>
+      <BorderGlow
+        className="cred-glow"
+        edgeSensitivity={30}
+        glowColor="40 80 80"
+        backgroundColor="#060010"
+        borderRadius={16}
+        glowRadius={26}
+        glowIntensity={0.75}
+        coneSpread={25}
+        animated={false}
+        colors={['#c084fc', '#f472b6', '#38bdf8']}
+        fillOpacity={0.35}
+      >
+        <div className="cred-card">
+          <div className="cred-card-title-wrap">
+            <h4 className="cred-card-title">{item.name}</h4>
+          </div>
 
-      {item.image ? (
-        <div className="cred-thumb-wrap">
-          <Image
-            src={item.image}
-            alt={`${item.name} ${kind}`}
-            className="cred-thumb"
-            width={900}
-            height={600}
-            loading="lazy"
-          />
-        </div>
-      ) : (
-        <div className="cred-thumb-wrap cred-thumb-placeholder-wrap">
-          <div className="cred-thumb-placeholder">No Preview</div>
-        </div>
-      )}
+          {item.image ? (
+            <div className="cred-thumb-wrap">
+              <Image
+                src={item.image}
+                alt={`${item.name} ${kind}`}
+                className="cred-thumb"
+                width={900}
+                height={600}
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <div className="cred-thumb-wrap cred-thumb-placeholder-wrap">
+              <div className="cred-thumb-placeholder">No Preview</div>
+            </div>
+          )}
 
-      <div className="cred-card-meta">
-        <span className="cred-org">{item.issuer || item.type}</span>
-        <span className="cred-year">{item.year}</span>
-      </div>
-      {item.note && <p className="cred-note">{item.note}</p>}
+          <div className="cred-card-meta">
+            <span className="cred-org">{item.issuer || item.type}</span>
+            <span className="cred-year">{item.year}</span>
+          </div>
+          {item.note && <p className="cred-note">{item.note}</p>}
+        </div>
+      </BorderGlow>
     </motion.article>
   );
 }
