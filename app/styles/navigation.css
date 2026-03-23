@@ -141,24 +141,63 @@
 }
 
 .theme-toggle {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--bg-1);
-  border: 1px solid var(--border);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--bg-2) 72%, var(--accent-2)),
+    color-mix(in srgb, var(--bg-1) 88%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--border-h) 70%, var(--border));
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-2);
-  transition: background var(--t), border-color var(--t), color var(--t), transform 0.18s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22), inset 0 1px 0 color-mix(in srgb, var(--white) 20%, transparent);
+  transition: background var(--t), border-color var(--t), color var(--t), transform 0.2s ease, box-shadow var(--t);
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .theme-toggle:hover {
-  background: var(--bg-2);
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--bg-3) 70%, var(--accent-2)),
+    color-mix(in srgb, var(--bg-2) 90%, transparent)
+  );
   border-color: var(--border-h);
   color: var(--text);
-  transform: scale(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28), 0 0 0 1px color-mix(in srgb, var(--border-h) 45%, transparent);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+}
+
+.theme-toggle-glow {
+  position: absolute;
+  inset: -16px;
+  background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--border-h) 35%, transparent), transparent 58%);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.theme-toggle-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  color: color-mix(in srgb, var(--text) 92%, var(--text-2));
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
 }
 
 .btn-resume-nav {

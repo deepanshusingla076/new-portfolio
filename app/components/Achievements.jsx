@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { CERTS, HACKATHONS } from '../lib/data';
 import { fadeUp } from '../lib/animations';
 import BorderGlow from './BorderGlow';
+import { useTheme } from '../context/ThemeContext';
 
 const cardStagger = {
   hidden: {},
@@ -21,7 +22,9 @@ const cardVariant = {
   },
 };
 
-function CredentialCard({ item, kind }) {
+function CredentialCard({ item, kind, theme }) {
+  const isLight = theme === 'light';
+
   return (
     <motion.article
       className="cred-card-shell"
@@ -32,15 +35,19 @@ function CredentialCard({ item, kind }) {
       <BorderGlow
         className="cred-glow"
         edgeSensitivity={30}
-        glowColor="40 80 80"
-        backgroundColor="#060010"
+        glowColor={isLight ? '215 58 45' : '198 70 78'}
+        backgroundColor="var(--bg-1)"
         borderRadius={16}
         glowRadius={26}
-        glowIntensity={0.75}
+        glowIntensity={isLight ? 0.38 : 0.62}
         coneSpread={25}
         animated={false}
-        colors={['#c084fc', '#f472b6', '#38bdf8']}
-        fillOpacity={0.35}
+        colors={
+          isLight
+            ? ['rgba(44, 108, 172, 0.50)', 'rgba(12, 157, 122, 0.42)', 'rgba(235, 127, 39, 0.35)']
+            : ['rgba(56, 189, 248, 0.52)', 'rgba(45, 212, 191, 0.40)', 'rgba(251, 146, 60, 0.32)']
+        }
+        fillOpacity={isLight ? 0.2 : 0.3}
       >
         <div className="cred-card">
           <div className="cred-card-title-wrap">
@@ -81,6 +88,8 @@ const columnVariant = {
 };
 
 export default function Achievements() {
+  const { theme } = useTheme();
+
   return (
     <section id="achievements" className="section">
       <div className="container">
@@ -114,7 +123,7 @@ export default function Achievements() {
             viewport={{ once: true, margin: '-40px' }}
           >
             {HACKATHONS.map((h) => (
-              <CredentialCard key={h.name} item={h} kind="hackathon certificate" />
+              <CredentialCard key={h.name} item={h} kind="hackathon certificate" theme={theme} />
             ))}
           </motion.div>
         </motion.div>
@@ -150,7 +159,7 @@ export default function Achievements() {
             viewport={{ once: true, margin: '-40px' }}
           >
             {CERTS.map((c) => (
-              <CredentialCard key={c.name} item={c} kind="certificate" />
+              <CredentialCard key={c.name} item={c} kind="certificate" theme={theme} />
             ))}
           </motion.div>
         </motion.div>

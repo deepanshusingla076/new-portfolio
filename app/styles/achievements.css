@@ -35,6 +35,7 @@
 
 .cred-card {
   background: linear-gradient(180deg, color-mix(in oklab, var(--bg-1) 92%, transparent), var(--bg-0));
+  border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
   border-radius: 14px;
   padding: 8px;
   min-height: 206px;
@@ -74,7 +75,7 @@
   border-radius: 10px;
   border: 1px solid var(--border);
   overflow: hidden;
-  background: #080b14;
+  background: linear-gradient(150deg, color-mix(in srgb, var(--bg-2) 92%, transparent), var(--bg-1));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,7 +88,7 @@
 }
 
 .cred-thumb-placeholder-wrap {
-  background: linear-gradient(135deg, #070b16, #101826);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--bg-2) 95%, transparent), color-mix(in srgb, var(--bg-3) 90%, transparent));
 }
 
 .cred-thumb-placeholder {

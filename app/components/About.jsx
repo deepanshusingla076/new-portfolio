@@ -29,16 +29,16 @@ export default function About() {
             viewport={{ once: true, margin: '-80px' }}
           >
             <motion.p variants={fadeUp}>
-              I&apos;m <strong>Deepanshu Singla</strong>, a Computer Science student at Chitkara University (3rd year, CGPA 9.06/10) based in Panchkula, India. I focus on building scalable full-stack applications and backend systems designed for real-world usage — prioritizing correctness, performance, and maintainability.
+              I&apos;m <strong>Deepanshu Singla</strong>, a third-year Computer Science student at Chitkara University (CGPA: 9.06/10), focused on building scalable, production-grade applications.
             </motion.p>
             <motion.p variants={fadeUp}>
-              My experience spans backend development, real-time systems, and data-driven applications. I work with technologies such as Node.js, Spring Boot, FastAPI, Redis, and Socket.io to build reliable APIs and real-time architectures. I also explore machine learning integration and data pipelines to add intelligent capabilities to applications.
+              I specialize in backend and full-stack development, designing real-time and data-driven systems using Node.js, Spring Boot, FastAPI, Redis, and Socket.io, with a strong emphasis on performance, reliability, and clean architecture.
             </motion.p>
             <motion.p variants={fadeUp}>
-              I enjoy thinking deeply about system design, distributed systems, and clean software architecture. My goal is to write code that is robust, maintainable, and production-ready, not just prototypes or demos.
+              I also explore AI/ML and integrate intelligent capabilities into applications. With a solid foundation in fundamentals, I aim to build robust, maintainable, and production-ready systems.
             </motion.p>
             <motion.p variants={fadeUp}>
-              Beyond academics, I actively contribute to open-source programs like GSSoC, participate in hackathons, and consistently improve my problem-solving skills through GeeksforGeeks and LeetCode. I believe in understanding how systems work under the hood, rather than simply using tools at a surface level.
+              I actively contribute to open source, participate in hackathons, and continuously strengthen my problem-solving skills on GeeksforGeeks and LeetCode.
             </motion.p>
           </motion.div>
 
