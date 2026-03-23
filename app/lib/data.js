@@ -71,7 +71,7 @@ export const PROJECTS = [
     image: "/assets/images/quizz.png",
     desc: "Scalable quiz platform built with Spring Boot microservices. Implemented authentication, question bank, result management, AI-powered quiz generation, and API gateway services. Automated service orchestration with batch scripts, Eureka service discovery, and secure role-based access control.",
     tech: ["Spring Boot", "Java", "Microservices", "JWT", "React", "Eureka"],
-    github: "https://github.com/deepanshusingla076/quizz",
+    github: "https://github.com/deepanshusingla076/quiz-master",
   },
   {
     id: 6,
@@ -82,6 +82,7 @@ export const PROJECTS = [
     desc: "Full-stack university web app with course listings, event registration, and user management. Integrated advanced AI chatbot via Grok (xAI) APIs for real-time support. Implemented secure backend proxy endpoints and dynamic API key management.",
     tech: ["Node.js", "Express", "MongoDB", "EJS", "Grok AI", "JavaScript"],
     github: "https://github.com/deepanshusingla076/rizzard_university",
+    live: "https://rizzard-university.vercel.app/",
   },
 ];
 
