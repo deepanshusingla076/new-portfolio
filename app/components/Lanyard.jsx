@@ -70,7 +70,7 @@ export default function Lanyard({ project }) {
                 onError={() => setImgError(true)}
                 fill
                 sizes="(max-width: 860px) 100vw, 460px"
-                loading="eager"
+                loading="lazy"
               />
             ) : (
               <div

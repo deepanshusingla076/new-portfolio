@@ -13,6 +13,7 @@ import Achievements from './components/Achievements';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollReveal from './components/ScrollReveal';
 
 export default function Page() {
   return (
@@ -31,16 +32,17 @@ export default function Page() {
       <Navigation />
       <main>
         <Hero />
-        <About />
-        <Education />
-        <Experience />
-        <Projects />
-        <TechStack />
-        <Achievements />
-        <Resume />
-        <Contact />
+        <ScrollReveal><About /></ScrollReveal>
+        <ScrollReveal><Education /></ScrollReveal>
+        <ScrollReveal><Experience /></ScrollReveal>
+        <ScrollReveal><Projects /></ScrollReveal>
+        <ScrollReveal><TechStack /></ScrollReveal>
+        <ScrollReveal><Achievements /></ScrollReveal>
+        <ScrollReveal><Resume /></ScrollReveal>
+        <ScrollReveal><Contact /></ScrollReveal>
       </main>
-      <Footer />
+      <ScrollReveal><Footer /></ScrollReveal>
     </>
   );
 }
+

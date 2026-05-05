@@ -124,7 +124,7 @@ export default function Projects() {
           onKeyDown={handleKey}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
-          style={{ outline: 'none' }}
+          style={{ outline: 'none', touchAction: 'none' }}
         >
           {/* LEFT: Lanyard card */}
           <div className="projects-lanyard-col">

@@ -6,6 +6,7 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+  preload: true,
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -13,6 +14,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
   variable: '--font-mono',
   weight: ['400', '500', '700'],
+  preload: true,
 });
 
 export const metadata = {
@@ -25,6 +27,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} data-theme="dark">
+      <head>
+        {/* Preconnect to external services */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* DNS prefetch for faster resolution */}
+        <link rel="dns-prefetch" href="https://api.lanyard.rest" />
+      </head>
       <body className={inter.className}>
         <ThemeProvider>
           {children}

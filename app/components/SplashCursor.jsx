@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function SplashCursor({
   SIM_RESOLUTION = 64,
@@ -19,8 +19,20 @@ export default function SplashCursor({
 }) {
   const canvasRef = useRef(null);
   const animationFrameId = useRef(null);
+  const [isSupported, setIsSupported] = useState(true);
+
+  // Detect device capability on mount
+  useEffect(() => {
+    const isMobile = typeof navigator !== 'undefined' && /iPhone|iPad|iPod|Android|Mobile/.test(navigator.userAgent);
+    const isLowEnd = typeof navigator !== 'undefined' && (navigator.deviceMemory < 4 || navigator.hardwareConcurrency < 2);
+    if (isMobile || isLowEnd) {
+      setIsSupported(false);
+    }
+  }, []);
 
   useEffect(() => {
+    if (!isSupported) return;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -606,6 +618,8 @@ export default function SplashCursor({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!isSupported) return null;
 
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, zIndex: 9999, pointerEvents: 'none', width: '100%', height: '100%' }}>

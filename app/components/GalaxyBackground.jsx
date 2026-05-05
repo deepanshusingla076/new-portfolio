@@ -1,5 +1,5 @@
 ﻿'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
 const WORDS = [
@@ -11,8 +11,20 @@ const WORDS = [
 export default function GalaxyBackground() {
   const canvasRef = useRef(null);
   const { theme } = useTheme();
+  const [isSupported, setIsSupported] = useState(true);
+
+  // Disable on mobile/low-end devices to save battery and boost mobile performance
+  useEffect(() => {
+    const isMobile = typeof navigator !== 'undefined' && /iPhone|iPad|iPod|Android|Mobile/.test(navigator.userAgent);
+    const isLowEnd = typeof navigator !== 'undefined' && (navigator.deviceMemory < 4 || navigator.hardwareConcurrency < 2);
+    if (isMobile || isLowEnd) {
+      setIsSupported(false);
+    }
+  }, []);
 
   useEffect(() => {
+    if (!isSupported) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -93,7 +105,9 @@ export default function GalaxyBackground() {
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVisibility);
     };
-  }, [theme]);
+  }, [theme, isSupported]);
+
+  if (!isSupported) return null;
 
   return (
     <canvas

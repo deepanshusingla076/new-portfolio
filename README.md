@@ -72,7 +72,7 @@ public/
 
  ---
 
-## 📧 Contact
+## � Contact
 
 Feel free to reach out for collaborations, opportunities, or just a quick chat:
 
